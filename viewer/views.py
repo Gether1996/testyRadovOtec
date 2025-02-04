@@ -5,23 +5,22 @@ from viewer.models import Test, Question
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count
 from unidecode import unidecode
+import random
 
 def homepage(request):
     return render(request, 'homepage.html')
 
-def test(request, question_number):
+def test(request):
     test_obj = Test.objects.first()
     if not test_obj:
         return render(request, 'error.html', {'error': 'Test sa nenašiel.'})
     test_name = 'Preukaz SBS - P'
 
-    all_questions = Question.objects.filter(test=test_obj)
-    filled_questions = request.session.get('filled_questions', [])
+    remaining_questions = list(Question.objects.filter(test=test_obj))
+    current_question = random.choice(remaining_questions) if remaining_questions else None
 
-    try:
-        current_question = all_questions.get(question_no=question_number)
-    except Question.DoesNotExist:
-        return render(request, 'error.html', {'error': 'Otázka sa nenašla sa nenašiel.'})
+    all_questions = 40
+    filled_questions = all_questions - len(remaining_questions)
 
     context = {
         'test_obj': test_obj,
@@ -29,9 +28,9 @@ def test(request, question_number):
         'current_question': current_question,
         'filled_questions': filled_questions,
         'test_name': test_name,
-        'user_progress': len(filled_questions),
-        'remaining_questions': len(all_questions) - len(filled_questions),
-        'done_questions_percent': int((len(filled_questions) / len(all_questions)) * 100),
+        'user_progress': filled_questions,
+        'remaining_questions': len(remaining_questions),
+        'done_questions_percent': filled_questions / all_questions * 100,
     }
 
     return render(request, 'test.html', context)

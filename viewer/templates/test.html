@@ -27,19 +27,19 @@
                             {% if item.0 == current_question.id and item.1 == 'answer_a' %}
                                 background-color: grey;
                             {% endif %}
-                        {% endfor %}" id="question-a" class="question-select-button" onclick="saveToSession('{{ current_question.id }}', 'answer_a')">a) {{ current_question.answer_a }}</button>
+                        {% endfor %}" id="question-a" class="question-select-button" onclick="checkCorrect('{{ current_question.id }}', 'answer_a')">a) {{ current_question.answer_a }}</button>
             <button style="
                         {% for item in filled_questions %}
                             {% if item.0 == current_question.id and item.1 == 'answer_b' %}
                                 background-color: grey;
                             {% endif %}
-                        {% endfor %}" id="question-b" class="question-select-button" onclick="saveToSession('{{ current_question.id }}', 'answer_b')">b) {{ current_question.answer_b }}</button>
+                        {% endfor %}" id="question-b" class="question-select-button" onclick="checkCorrect('{{ current_question.id }}', 'answer_b')">b) {{ current_question.answer_b }}</button>
             <button style="
                         {% for item in filled_questions %}
                             {% if item.0 == current_question.id and item.1 == 'answer_c' %}
                                 background-color: grey;
                             {% endif %}
-                        {% endfor %}" id="question-c" class="question-select-button" onclick="saveToSession('{{ current_question.id }}', 'answer_c')">c) {{ current_question.answer_c }}</button>
+                        {% endfor %}" id="question-c" class="question-select-button" onclick="checkCorrect('{{ current_question.id }}', 'answer_c')">c) {{ current_question.answer_c }}</button>
         </div>
         <div class="previous-next-buttons">
             <button class="next-question-button btn btn-outline-primary" id="prevButton" style="{% if current_question.question_no == 1 %}visibility: hidden;{% endif %}" onclick="prevQuestion({{ current_question.question_no }})">Predošlá otázka</button>

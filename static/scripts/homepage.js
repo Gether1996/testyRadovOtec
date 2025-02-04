@@ -103,7 +103,7 @@ function createTest() {
             .then(response => response.json())
             .then(data => {
               if (data.status === 'success') {
-                window.location.href = `/test/1/`;
+                window.location.href = `/test/`;
               } else {
                 Swal.fire({
                   icon: 'error',
@@ -146,7 +146,7 @@ function continueInTest() {
         .then(response => response.json())
         .then(data => {
           if (data.status === 'success') {
-            window.location.href = `/test/1/`;
+            window.location.href = `/test/`;
           } else {
             Swal.fire({
               icon: 'error',

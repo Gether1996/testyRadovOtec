@@ -33,28 +33,19 @@ from viewer.models import Test, Question
 #             except Course.DoesNotExist:
 #                 return JsonResponse({'status': 'error', 'message': 'Nesprávny PIN.'})
 
-
-def save_progress_into_session(request):
+def check_correct(request):
     if request.method == 'POST':
         json_data = json.loads(request.body.decode('utf-8'))
 
-        filled_questions = request.session.get('filled_questions', [])
-        new_input_pair = [int(json_data['question_id']), str(json_data['picked_answer'])]
-        changed_already_in_session = False
-        new_questions = []
+        try:
+            question = Question.objects.get(id=json_data['question_id'])
+            if str(json_data['picked_answer']) == question.correct_answer:
+                question.delete()
+                return JsonResponse({'status': 'success'})
 
-        if filled_questions:
-            for pair in filled_questions:
-                if pair[0] == new_input_pair[0]:
-                    pair[1] = new_input_pair[1]
-                    new_questions.append(pair)
-                    changed_already_in_session = True
-                else:
-                    new_questions.append(pair)
+            else:
+                return JsonResponse({'status': 'success', 'correct_answer': question.correct_answer})
 
-        if not changed_already_in_session:
-            new_questions.append(new_input_pair)
-
-        request.session['filled_questions'] = new_questions
-        return JsonResponse({'status': 'success'})
+        except Question.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Otázka sa nenašla'})
     return JsonResponse({'status': 'error'})

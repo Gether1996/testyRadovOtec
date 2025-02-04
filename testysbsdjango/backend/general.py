@@ -53,36 +53,36 @@ from django.template.loader import render_to_string
 #     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
 
 
-def finish_test(request):
-    if request.method == 'POST':
-        try:
-            json_data = json.loads(request.body.decode('utf-8'))
-
-            test_obj = Test.objects.first()
-            questions = Question.objects.filter(test=test_obj)
-            user_filled_questions = request.session.get('filled_questions', [])
-
-            points_obtained = 0
-            for filled_pair in user_filled_questions:
-                question_id, user_answer = filled_pair
-                try:
-                    question = questions.get(id=question_id)
-                    picked_answer_text = getattr(question, user_answer)
-                    question.picked_answer = picked_answer_text
-                    question.save()
-                    if picked_answer_text == question.correct_answer:
-                        points_obtained += question.point_value
-                except Question.DoesNotExist:
-                    print(f'Question with id {question_id} does not exist in this test.')
-
-            test_obj.points = points_obtained
-            test_obj.done = True
-            test_obj.save()
-            request.session.flush()
-
-            return JsonResponse({'status': 'success', 'points': points_obtained})
-        except Exception as e:
-            print(f'Error: {e}')
-            return JsonResponse({'status': 'error', 'message': str(e)})
-
-    return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+# def finish_test(request):
+#     if request.method == 'POST':
+#         try:
+#             json_data = json.loads(request.body.decode('utf-8'))
+#
+#             test_obj = Test.objects.first()
+#             questions = Question.objects.filter(test=test_obj)
+#             user_filled_questions = request.session.get('filled_questions', [])
+#
+#             points_obtained = 0
+#             for filled_pair in user_filled_questions:
+#                 question_id, user_answer = filled_pair
+#                 try:
+#                     question = questions.get(id=question_id)
+#                     picked_answer_text = getattr(question, user_answer)
+#                     question.picked_answer = picked_answer_text
+#                     question.save()
+#                     if picked_answer_text == question.correct_answer:
+#                         points_obtained += question.point_value
+#                 except Question.DoesNotExist:
+#                     print(f'Question with id {question_id} does not exist in this test.')
+#
+#             test_obj.points = points_obtained
+#             test_obj.done = True
+#             test_obj.save()
+#             request.session.flush()
+#
+#             return JsonResponse({'status': 'success', 'points': points_obtained})
+#         except Exception as e:
+#             print(f'Error: {e}')
+#             return JsonResponse({'status': 'error', 'message': str(e)})
+#
+#     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
