@@ -32,6 +32,7 @@ class Test(Model):
     # order = IntegerField()
     # pin = ForeignKey(PinCode, on_delete=CASCADE)
     # active = BooleanField(default=True)
+    num_of_questions_max = IntegerField(default=None)
     done = BooleanField(default=False)
 
     def __str__(self):

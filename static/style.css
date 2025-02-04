@@ -110,13 +110,17 @@ body {
 
 .previous-next-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
   margin-top: 10px;
 }
 
 .cancel-test-button-container{
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 30px;
+}
+
+.initially-hidden {
+    display: none;
 }
 
 .cancel-test-button:hover {

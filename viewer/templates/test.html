@@ -7,6 +7,7 @@
 
 {% block content %}
     <br>
+    <h2 class="test-number-header text-centered">{{ test_name }}</h2>
     <div class="text-centered ">
       <div class="progress-wrapper">
           <div class="numbers-container">
@@ -22,39 +23,17 @@
       </div>
         <h4 class="test-question-header">{{ current_question.question_no}}. {{ current_question.question_text }}</h4>
         <div class="column-container-test">
-            <button style="
-                        {% for item in filled_questions %}
-                            {% if item.0 == current_question.id and item.1 == 'answer_a' %}
-                                background-color: grey;
-                            {% endif %}
-                        {% endfor %}" id="question-a" class="question-select-button" onclick="checkCorrect('{{ current_question.id }}', 'answer_a')">a) {{ current_question.answer_a }}</button>
-            <button style="
-                        {% for item in filled_questions %}
-                            {% if item.0 == current_question.id and item.1 == 'answer_b' %}
-                                background-color: grey;
-                            {% endif %}
-                        {% endfor %}" id="question-b" class="question-select-button" onclick="checkCorrect('{{ current_question.id }}', 'answer_b')">b) {{ current_question.answer_b }}</button>
-            <button style="
-                        {% for item in filled_questions %}
-                            {% if item.0 == current_question.id and item.1 == 'answer_c' %}
-                                background-color: grey;
-                            {% endif %}
-                        {% endfor %}" id="question-c" class="question-select-button" onclick="checkCorrect('{{ current_question.id }}', 'answer_c')">c) {{ current_question.answer_c }}</button>
+            <button id="question-a" class="question-select-button" onclick="checkCorrect('{{ current_question.id }}', 'answer_a')">a) {{ current_question.answer_a }}</button>
+            <button id="question-b" class="question-select-button" onclick="checkCorrect('{{ current_question.id }}', 'answer_b')">b) {{ current_question.answer_b }}</button>
+            <button id="question-c" class="question-select-button" onclick="checkCorrect('{{ current_question.id }}', 'answer_c')">c) {{ current_question.answer_c }}</button>
         </div>
         <div class="previous-next-buttons">
-            <button class="next-question-button btn btn-outline-primary" id="prevButton" style="{% if current_question.question_no == 1 %}visibility: hidden;{% endif %}" onclick="prevQuestion({{ current_question.question_no }})">Predošlá otázka</button>
-
-            <button class="next-question-button btn btn-outline-primary" id="nextButton" style="{% if current_question.question_no == 40 %}visibility: hidden;{% endif %}" onclick="nextQuestion({{ current_question.question_no }})">Ďalšia otázka</button>
+            <button class="next-question-button btn btn-outline-primary initially-hidden" id="nextButton" onclick="nextQuestion()">Ďalšia otázka</button>
         </div>
 
         <div class="cancel-test-button-container">
             <button class="cancel-test-button btn btn-outline-danger" onclick="cancelTestConfirmation()">Zrušiť test</button>
         </div>
-
-        <div style="margin-top: 20px; {% if user_progress != 40 %} display: none; {% endif %}" id="finish-button">
-            <button class="finish-test-button btn btn-outline-primary" onclick="finishTestQuestion('{{ hash }}', {{ test_obj.order }})">Vyhodnotiť test</button>
-        </div>
-
     </div>
 {% endblock %}
 

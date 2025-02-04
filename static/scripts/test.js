@@ -14,23 +14,38 @@ function checkCorrect(question_id, picked_answer) {
             'X-CSRFToken': csrfToken
         },
         body: JSON.stringify({ question_id: question_id, picked_answer: picked_answer }),
-    }).then(response => {
-        if (response.ok) {
-
-
-
-
-
-            nextQuestion(question_num);
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        if (data.status === "success" && !data.correct_answer) {
+            nextQuestion();
         } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Chyba',
-                text: 'Nastala chyba pri ukladaní odpovede. Skúste to prosím znova.',
-                confirmButtonText: 'OK'
-            });
+            let selectedButton = document.querySelector(`[onclick="checkCorrect('${question_id}', '${picked_answer}')"]`);
+            const nextButton = document.getElementById('nextButton');
+            const aQuestionButton = document.getElementById('question-a');
+            const bQuestionButton = document.getElementById('question-b');
+            const cQuestionButton = document.getElementById('question-c');
+            nextButton.classList.remove('initially-hidden');
+            aQuestionButton.disabled = true;
+            bQuestionButton.disabled = true;
+            cQuestionButton.disabled = true;
+
+            if (selectedButton) {
+                selectedButton.style.backgroundColor = '#ff5252';
+            }
+
+            let correctButton = document.querySelector(`[onclick="checkCorrect('${question_id}', '${data.correct_answer}')"]`);
+            console.log("Correct Button:", correctButton);
+
+            if (correctButton) {
+                correctButton.style.backgroundColor = '#5bc75b';
+            }
         }
-    }).catch(() => {
+    })
+    .catch(error => {
+        console.error("Fetch error:", error);
         Swal.fire({
             icon: 'error',
             title: 'Chyba',
@@ -55,24 +70,8 @@ document.addEventListener('click', (event) => {
   }
 });
 
-function prevQuestion(question_num) {
-    if (question_num > 1) {
-        window.location.href = `/test/${question_num -1}/`;
-    }
-}
-
-function nextQuestion(question_num) {
-    if (question_num < 40) {
-        setTimeout(() => {
-            window.location.href = `/test/${question_num +1}/`;
-        }, 50);
-    }
-
-    if (question_num === 40) {
-        setTimeout(() => {
-            window.location.reload();
-        }, 50);
-    }
+function nextQuestion() {
+    window.location.reload();
 }
 
 document.addEventListener('keydown', function(event) {
