@@ -1,47 +1,37 @@
 import json
 from django.http import JsonResponse
-from viewer.models import Test, Question, PinCode, EmailInPV31, LectorPin, Course
-from .general import initialize_timer
+from viewer.models import Test, Question
 
-
-def login_with_pin(request):
-    if request.method == 'POST':
-        json_data = json.loads(request.body.decode('utf-8'))
-        try:
-            pin_obj = PinCode.objects.get(pin=json_data['pin'])
-
-            return JsonResponse({'status': 'success', 'hash': pin_obj.hash})
-
-        except PinCode.DoesNotExist:
-            return JsonResponse({'status': 'error'})
-    return JsonResponse({'status': 'error'})
-
-
-def login_lector(request):
-    if request.method == 'POST':
-        json_data = json.loads(request.body.decode('utf-8'))
-
-        try:
-            lector = LectorPin.objects.get(pin=json_data['pin'])
-            return JsonResponse(
-                {'status': 'success', 'message': 'Prihlásenie úspešné.', 'user': 'lector', 'hash': lector.hash})
-
-        except LectorPin.DoesNotExist:
-            try:
-                course = Course.objects.get(pin=json_data['pin'])
-                return JsonResponse(
-                    {'status': 'success', 'message': 'Prihlásenie úspešné.', 'user': 'course', 'hash': course.hash})
-
-            except Course.DoesNotExist:
-                return JsonResponse({'status': 'error', 'message': 'Nesprávny PIN.'})
-
-
-def delete_session(request):
-    if request.method == 'POST':
-        request.session.flush()
-        initialize_timer(request)
-        print('delete_session called -> Session deleted and timer reseted')
-        return JsonResponse({'status': 'success'})
+# def login_with_pin(request):
+#     if request.method == 'POST':
+#         json_data = json.loads(request.body.decode('utf-8'))
+#         try:
+#             pin_obj = PinCode.objects.get(pin=json_data['pin'])
+#
+#             return JsonResponse({'status': 'success', 'hash': pin_obj.hash})
+#
+#         except PinCode.DoesNotExist:
+#             return JsonResponse({'status': 'error'})
+#     return JsonResponse({'status': 'error'})
+#
+#
+# def login_lector(request):
+#     if request.method == 'POST':
+#         json_data = json.loads(request.body.decode('utf-8'))
+#
+#         try:
+#             lector = LectorPin.objects.get(pin=json_data['pin'])
+#             return JsonResponse(
+#                 {'status': 'success', 'message': 'Prihlásenie úspešné.', 'user': 'lector', 'hash': lector.hash})
+#
+#         except LectorPin.DoesNotExist:
+#             try:
+#                 course = Course.objects.get(pin=json_data['pin'])
+#                 return JsonResponse(
+#                     {'status': 'success', 'message': 'Prihlásenie úspešné.', 'user': 'course', 'hash': course.hash})
+#
+#             except Course.DoesNotExist:
+#                 return JsonResponse({'status': 'error', 'message': 'Nesprávny PIN.'})
 
 
 def save_progress_into_session(request):

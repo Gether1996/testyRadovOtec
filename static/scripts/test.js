@@ -6,7 +6,6 @@ function setProgressBarPercentage(percentage) {
 
 setProgressBarPercentage(percentage);
 
-
 function saveToSession(question_id, picked_answer) {
     fetch('/save_progress_into_session/', {
         method: 'POST',
@@ -17,7 +16,7 @@ function saveToSession(question_id, picked_answer) {
         body: JSON.stringify({ question_id: question_id, picked_answer: picked_answer }),
     }).then(response => {
         if (response.ok) {
-            nextQuestion(hash, test_num, question_num);
+            nextQuestion(question_num);
         } else {
             Swal.fire({
                 icon: 'error',
@@ -51,16 +50,16 @@ document.addEventListener('click', (event) => {
   }
 });
 
-function prevQuestion(hash, test_num, question_num) {
+function prevQuestion(question_num) {
     if (question_num > 1) {
-        window.location.href = `/test/${hash}/${test_num}/${question_num -1}/`;
+        window.location.href = `/test/${question_num -1}/`;
     }
 }
 
-function nextQuestion(hash, test_num, question_num) {
+function nextQuestion(question_num) {
     if (question_num < 40) {
         setTimeout(() => {
-            window.location.href = `/test/${hash}/${test_num}/${question_num +1}/`;
+            window.location.href = `/test/${question_num +1}/`;
         }, 50);
     }
 
@@ -92,43 +91,8 @@ document.addEventListener('keydown', function(event) {
 });
 
 function cancelTestConfirmation() {
-    Swal.fire({
-        icon: 'warning',
-        text: `Chystáte sa ukončiť test, Váš doterajší postup sa neuloží, pokračovať?`,
-        confirmButtonText: 'Ukončiť test',
-        showCancelButton: true,
-        cancelButtonText: 'Zrušiť',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = `/my_tests/${hash}/`;
-        }
-    });
+    window.location.href = '/';
 }
-
-var countdown = document.getElementById('countdown');
-var futureTime = timer;
-let targetDate = new Date(futureTime);
-
-function updateCountdown() {
-    var now = new Date();
-    var difference = targetDate.getTime() - now.getTime();
-
-    if (difference <= 0) {
-        countdown.textContent = "Čas vypršal!";
-        clearInterval(intervalId);
-        finishTest(hash, test_num);
-        return;
-    }
-
-    var seconds = Math.floor((difference / 1000) % 60);
-    var minutes = Math.floor((difference / (1000 * 60)) % 60);
-
-    var formattedTime = `Zostávajúci čas: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    countdown.textContent = formattedTime;
-}
-
-var intervalId = setInterval(updateCountdown, 1000);
-updateCountdown();
 
 function finishTestQuestion(hash, test_num) {
     Swal.fire({

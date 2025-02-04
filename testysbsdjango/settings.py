@@ -1,18 +1,11 @@
 from pathlib import Path
 import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-isg%)h_)j)%f7a0-w%pvq+$*#8_zhkix+tkn)7)fi#4t49x*o%'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -77,27 +70,10 @@ CSRF_TRUSTED_ORIGINS = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
-        'NAME': 'skuskysbs',
-        'USER': 'skuskysbs',
-        'PASSWORD': 'ATSGgasei2',
-        'HOST': 'pv31.ccsipro.sk',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-            'use_pure': True,
-        },
-    },
-    'ccsi_db': {  # real
-        'ENGINE': 'mysql.connector.django',
-        'NAME': 'pv31',
-        'USER': 'django_visits',
-        'PASSWORD': 'Ohmo5ahsohb2oah2dei2',
-        'HOST': 'pv31.ccsipro.sk',
-        'PORT': '3306',
-    },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",  # Uses a file-based SQLite database
+    }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
