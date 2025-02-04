@@ -1,0 +1,34 @@
+{% load static %}
+
+{% if lector_logged %}
+  <div class="logged-in-user-container">
+    <div class="logged-in-user">
+      <p class="logged-in-user-p"><i class="fa-solid fa-user"></i> Lektor</p>
+      <button class="log-out-button" onclick="logoutConfirmation()">Odhlásiť sa <i class="fa-solid fa-right-from-bracket"></i></button>
+    </div>
+  </div>
+{% elif pin_obj %}
+  <div class="logged-in-user-container">
+    <div class="logged-in-user">
+      <p class="logged-in-user-p"><i class="fa-solid fa-user"></i> {{ pin_obj.pin }}</p>
+      <button class="log-out-button" onclick="logoutConfirmation()">Odhlásiť sa <i class="fa-solid fa-right-from-bracket"></i></button>
+    </div>
+  </div>
+{% endif %}
+
+<script>
+  function logoutConfirmation() {
+    Swal.fire({
+        title: 'Odhlásiť?',
+        icon: 'question',
+        iconColor: '#2c3e50',
+        showCancelButton: true,
+        confirmButtonText: 'Áno',
+        cancelButtonText: 'Nie',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "/";
+        }
+    });
+  }
+</script>

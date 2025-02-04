@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+  <title>Test č. {{ test_obj.order }} história</title>
+{% endblock %}
+
+{% block content %}
+
+    {% include 'log-out.html' %}
+    <div class="back-button-container">
+          <button class="back-button" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> Späť</button>
+    </div>
+
+    <style>
+        @media screen and (max-width: 1175px) {
+            .logged-in-user-p{
+                font-size: 20px;
+                margin-top: 15px;
+            }
+            .logged-in-user-container {
+                position: absolute;
+                top: 90px;
+                right: 70px;
+            }
+
+            .back-button-container {
+                position: absolute;
+                top: 100px;
+                left: 70px;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .logged-in-user-p{
+                font-size: 12px;
+                margin-top: 15px;
+            }
+        }
+    </style>
+
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 30px; margin-bottom: 30px;">
+        <div style="margin-bottom: 20px; text-align: center;">
+            <h1>Pin {{ pin_obj.pin}} {% if pin_obj.name_surname %}- {{ pin_obj.name_surname }}{% endif %}</h1>
+            <h2>Test č. {{ test_obj.order }}</h2>
+            <h3>Dosiahnuté body: {{ test_obj.points }} / 80</h3>
+        </div>
+    </div>
+
+    <div class="all-questions-container-history">
+    {% for question in all_questions %}
+        <h3 class="history-question-header">{{ question.question_no }}. {{ question.question_text }}</h3>
+        {% if question.correctly_answered %}
+            <ul>
+                <li class="history-question-li" style="{% if question.answer_a == question.correct_answer %}background-color: #9ed5b6;{% endif %}">a) {{ question.answer_a }}</li>
+                <li class="history-question-li" style="{% if question.answer_b == question.correct_answer %}background-color: #9ed5b6;{% endif %}">b) {{ question.answer_b }}</li>
+                <li class="history-question-li" style="{% if question.answer_c == question.correct_answer %}background-color: #9ed5b6;{% endif %}">c) {{ question.answer_c }}</li>
+            </ul>
+        {% else %}
+            <ul>
+                <li class="history-question-li" style="{% if question.answer_a == question.correct_answer %}background-color: #9ed5b6;{% elif question.answer_a == question.picked_answer %}background-color: #fb7e80;{% endif %}">a) {{ question.answer_a }}</li>
+                <li class="history-question-li" style="{% if question.answer_b == question.correct_answer %}background-color: #9ed5b6;{% elif question.answer_b == question.picked_answer %}background-color: #fb7e80;{% endif %}">b) {{ question.answer_b }}</li>
+                <li class="history-question-li" style="{% if question.answer_c == question.correct_answer %}background-color: #9ed5b6;{% elif question.answer_c == question.picked_answer %}background-color: #fb7e80;{% endif %}">c) {{ question.answer_c }}</li>
+            </ul>
+        {% endif %}
+    {% endfor %}
+    </div>
+
+    <div class="column-container">
+        <div style="margin-top: 20px; margin-bottom: 40px;">
+            <a class="test-select-button" style="text-decoration: none;" href="{% url 'lector_view' lector_hash=course.hash %}">Späť</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script src="{% static 'scripts/test-history.js' %}"></script>
+{% endblock %}

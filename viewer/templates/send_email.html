@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { margin: 0; padding: 0; }
+        table { border-collapse: collapse; width: 600px; margin: 0 auto; border: 1px solid #ccc; }
+        td { text-align: center; background-color: #fff; padding: 20px; }
+        h2, h1, h3 { margin: 0; font-family: Arial, sans-serif; color: #333; }
+        h2 { font-size: 24px; font-weight: bold; }
+        h1 { font-size: 30px; font-weight: bold; }
+        h3 { font-size: 22px; }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <h2>CCSIPRO<sup>®</sup></h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h1>Testy odbornej spôsobilosti pre SBS</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>Váš pin kód na prihlásenie:</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding: 20px 50px; border: 2px solid black; border-radius: 10px; background-color: white; color: black; font-size: 25px; font-weight: bold;">{{ pin_obj.pin }}</div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

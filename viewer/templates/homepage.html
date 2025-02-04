@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+  <title>TESTY SBS</title>
+{% endblock %}
+
+{% block content %}
+
+    {% include 'navbar.html' %}
+
+    <div class="text-centered">
+        <div class="column-container">
+            <div class="input-login-container">
+                <input type="text" id="login_pin" placeholder="Vložte PIN" class="pin-input">
+                <button class="log-in-button" onclick="login()">Prihlásiť sa</button>
+            </div>
+            <br>
+            <div class="input-login-container">
+                <button class="test-select-button" onclick="createPinAndTests()">Nový užívateľ</button>
+            </div>
+            <br>
+            <div class="input-login-container">
+                <button class="test-select-button" onclick="lectorLogin()">Lektor</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+    <script src="{% static 'scripts/homepage.js' %}"></script>
+{% endblock %}

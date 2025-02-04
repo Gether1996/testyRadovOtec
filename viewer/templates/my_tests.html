@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+  <title>Výber testu</title>
+{% endblock %}
+
+{% block content %}
+
+    <style>
+        @media screen and (max-width: 1270px) {
+            .logged-in-user-p{
+                font-size: 20px;
+                margin-top: 15px;
+            }
+            .logged-in-user-container {
+                position: absolute;
+                top: 60px;
+                right: 70px;
+            }
+            .back-button-container {
+                position: absolute;
+                top: 70px;
+                left: 70px;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .logged-in-user-p{
+                font-size: 12px;
+                margin-top: 15px;
+            }
+        }
+    </style>
+
+    {% include 'navbar.html' %}
+    {% include 'log-out.html' %}
+    <div class="back-button-container">
+          <button class="back-button" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> Späť</button>
+    </div>
+
+    <div class="progress-wrapper">
+      <div class="numbers-container">
+        <span class="start-number">{{ user_progress }}</span>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="myProgressBar"></div>
+        <b class="progress-percentage">{{ done_tests_percent }}%</b>
+      </div>
+      <div class="numbers-container">
+        <span class="end-number">{{ remaining_tests }}</span>
+      </div>
+    </div>
+
+    <div class="tests-container-new">
+      {% for test in tests %}
+          <a style="background-color:{{ test.color }}; border: {{ test.color }};" onclick="openTest('{{ hash }}',  '{{ test.order }}', '{{ test.done }}')" class="test-link">
+              Test č. {{ test.order }}
+              {% if test.done %}
+                <br><br>Body: {{ test.points }} / 80
+              {% endif %}
+          </a>
+      {% endfor %}
+    </div>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script>
+        var percentage = {{ done_tests_percent }};
+    </script>
+    <script src="{% static 'scripts/my_tests.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+  <title>{{ test_name }}</title>
+{% endblock %}
+
+{% block content %}
+<div class="text-centered">
+  <span id="countdown"></span>
+  <h2 class="test-number-header">Test číslo {{ test_obj.order }}</h2>
+    </div>
+
+    <div class="text-centered ">
+      <div class="progress-wrapper">
+          <div class="numbers-container">
+            <span class="start-number">{{ user_progress }}</span>
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar" id="myProgressBar"></div>
+            <b class="progress-percentage">{{ done_questions_percent }}%</b>
+          </div>
+          <div class="numbers-container">
+            <span class="end-number">{{ remaining_questions }}</span>
+          </div>
+      </div>
+        <h4 class="test-question-header">{{ current_question.question_no}}. {{ current_question.question_text }}</h4>
+        <div class="column-container-test">
+            <button style="
+                        {% for item in filled_questions %}
+                            {% if item.0 == current_question.id and item.1 == 'answer_a' %}
+                                background-color: grey;
+                            {% endif %}
+                        {% endfor %}" id="question-a" class="question-select-button" onclick="saveToSession('{{ current_question.id }}', 'answer_a')">a) {{ current_question.answer_a }}</button>
+            <button style="
+                        {% for item in filled_questions %}
+                            {% if item.0 == current_question.id and item.1 == 'answer_b' %}
+                                background-color: grey;
+                            {% endif %}
+                        {% endfor %}" id="question-b" class="question-select-button" onclick="saveToSession('{{ current_question.id }}', 'answer_b')">b) {{ current_question.answer_b }}</button>
+            <button style="
+                        {% for item in filled_questions %}
+                            {% if item.0 == current_question.id and item.1 == 'answer_c' %}
+                                background-color: grey;
+                            {% endif %}
+                        {% endfor %}" id="question-c" class="question-select-button" onclick="saveToSession('{{ current_question.id }}', 'answer_c')">c) {{ current_question.answer_c }}</button>
+        </div>
+        <div class="previous-next-buttons">
+            <button class="next-question-button btn btn-outline-primary" id="prevButton" style="{% if current_question.question_no == 1 %}visibility: hidden;{% endif %}" onclick="prevQuestion('{{ hash }}', {{ test_obj.order }}, {{ current_question.question_no }})">Predošlá otázka</button>
+
+            <button class="next-question-button btn btn-outline-primary" id="nextButton" style="{% if current_question.question_no == 40 %}visibility: hidden;{% endif %}" onclick="nextQuestion('{{ hash }}', {{ test_obj.order }}, {{ current_question.question_no }})">Ďalšia otázka</button>
+        </div>
+
+        <div class="dots-container">
+            {% for dot in all_questions %}
+                <div class="dot-with-number-container">
+                    <a class="action-dot
+                        {% if current_question.question_no == dot.question_no %}
+                            black-dot
+                        {% elif filled_questions %}
+                            {% for item in filled_questions %}
+                                {% if dot.id == item.0 %}
+                                    blue-dot
+                                {% else %}
+                                    grey-dot
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            grey-dot
+                        {% endif %}"
+                       href="{% url 'test' hash=test_obj.pin.hash test_number=test_obj.order question_number=dot.question_no %}"><i class="fa-solid fa-circle"></i></a>
+                    <a class="action-dot-number" href="{% url 'test' hash=test_obj.pin.hash test_number=test_obj.order question_number=dot.question_no %}">{{ dot.question_no }}</a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="cancel-test-button-container">
+            <button class="cancel-test-button btn btn-outline-danger" onclick="cancelTestConfirmation()">Zrušiť test</button>
+        </div>
+
+        <div style="margin-top: 20px; {% if user_progress != 40 %} display: none; {% endif %}" id="finish-button">
+            <button class="finish-test-button btn btn-outline-primary" onclick="finishTestQuestion('{{ hash }}', {{ test_obj.order }})">Vyhodnotiť test</button>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script>
+        var remaining_questions = '{{ remaining_questions }}';
+        var percentage = {{ done_questions_percent }};
+        var hash = '{{ hash }}';
+        var test_num = {{ test_obj.order }};
+        var question_num = {{ current_question.question_no }};
+        var timer = '{{ timer }}';
+    </script>
+    <script src="{% static 'scripts/test.js' %}"></script>
+{% endblock %}

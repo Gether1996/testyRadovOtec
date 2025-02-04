@@ -1,0 +1,202 @@
+[
+  {
+    "question_no": 1,
+    "question_text": "What is the capital of France?",
+    "answer_a": "Paris",
+    "answer_b": "Berlin",
+    "answer_c": "London",
+    "correct_answer": "Paris"
+  },
+  {
+    "question_no": 2,
+    "question_text": "In which year did World War II end?",
+    "answer_a": "1945",
+    "answer_b": "1918",
+    "answer_c": "1939",
+    "correct_answer": "1945"
+  },
+  {
+    "question_no": 3,
+    "question_text": "Who wrote 'Romeo and Juliet'?",
+    "answer_a": "William Shakespeare",
+    "answer_b": "Jane Austen",
+    "answer_c": "Charles Dickens",
+    "correct_answer": "William Shakespeare"
+  },
+  {
+    "question_no": 4,
+    "question_text": "What is the largest planet in our solar system?",
+    "answer_a": "Jupiter",
+    "answer_b": "Saturn",
+    "answer_c": "Mars",
+    "correct_answer": "Jupiter"
+  },
+  {
+    "question_no": 5,
+    "question_text": "Which continent is known as the 'Land of the Rising Sun'?",
+    "answer_a": "Asia",
+    "answer_b": "Europe",
+    "answer_c": "Africa",
+    "correct_answer": "Asia"
+  },
+  {
+    "question_no": 6,
+    "question_text": "Who painted the 'Mona Lisa'?",
+    "answer_a": "Leonardo da Vinci",
+    "answer_b": "Vincent van Gogh",
+    "answer_c": "Pablo Picasso",
+    "correct_answer": "Leonardo da Vinci"
+  },
+  {
+    "question_no": 7,
+    "question_text": "What is the currency of Japan?",
+    "answer_a": "Yen",
+    "answer_b": "Yuan",
+    "answer_c": "Won",
+    "correct_answer": "Yen"
+  },
+  {
+    "question_no": 8,
+    "question_text": "Which element has the chemical symbol 'O'?",
+    "answer_a": "Oxygen",
+    "answer_b": "Osmium",
+    "answer_c": "Oganesson",
+    "correct_answer": "Oxygen"
+  },
+  {
+    "question_no": 9,
+    "question_text": "What is the capital city of Australia?",
+    "answer_a": "Canberra",
+    "answer_b": "Melbourne",
+    "answer_c": "Sydney",
+    "correct_answer": "Canberra"
+  },
+  {
+    "question_no": 10,
+    "question_text": "Who is known as the 'Father of Computer Science'?",
+    "answer_a": "Alan Turing",
+    "answer_b": "Bill Gates",
+    "answer_c": "Steve Jobs",
+    "correct_answer": "Alan Turing"
+  },
+  {
+    "question_no": 11,
+    "question_text": "Which planet is known as the 'Red Planet'?",
+    "answer_a": "Mars",
+    "answer_b": "Jupiter",
+    "answer_c": "Saturn",
+    "correct_answer": "Mars"
+  },
+  {
+    "question_no": 12,
+    "question_text": "In which year did the Titanic sink?",
+    "answer_a": "1912",
+    "answer_b": "1920",
+    "answer_c": "1905",
+    "correct_answer": "1912"
+  },
+  {
+    "question_no": 13,
+    "question_text": "Who developed the theory of relativity?",
+    "answer_a": "Albert Einstein",
+    "answer_b": "Isaac Newton",
+    "answer_c": "Galileo Galilei",
+    "correct_answer": "Albert Einstein"
+  },
+  {
+    "question_no": 14,
+    "question_text": "What is the largest ocean on Earth?",
+    "answer_a": "Pacific Ocean",
+    "answer_b": "Atlantic Ocean",
+    "answer_c": "Indian Ocean",
+    "correct_answer": "Pacific Ocean"
+  },
+  {
+    "question_no": 15,
+    "question_text": "Which famous scientist discovered penicillin?",
+    "answer_a": "Alexander Fleming",
+    "answer_b": "Marie Curie",
+    "answer_c": "Louis Pasteur",
+    "correct_answer": "Alexander Fleming"
+  },
+  {
+    "question_no": 16,
+    "question_text": "What is the currency of the United Kingdom?",
+    "answer_a": "British Pound",
+    "answer_b": "Euro",
+    "answer_c": "Dollar",
+    "correct_answer": "British Pound"
+  },
+  {
+    "question_no": 17,
+    "question_text": "Which famous river is often referred to as the 'Nile'?",
+    "answer_a": "Nile River",
+    "answer_b": "Amazon River",
+    "answer_c": "Mississippi River",
+    "correct_answer": "Nile River"
+  },
+  {
+    "question_no": 18,
+    "question_text": "Who is the author of 'To Kill a Mockingbird'?",
+    "answer_a": "Harper Lee",
+    "answer_b": "J.K. Rowling",
+    "answer_c": "George Orwell",
+    "correct_answer": "Harper Lee"
+  },
+  {
+    "question_no": 19,
+    "question_text": "What is the largest mammal on Earth?",
+    "answer_a": "Blue Whale",
+    "answer_b": "Elephant",
+    "answer_c": "Giraffe",
+    "correct_answer": "Blue Whale"
+  },
+  {
+    "question_no": 20,
+    "question_text": "Which gas do plants primarily absorb from the atmosphere?",
+    "answer_a": "Carbon Dioxide",
+    "answer_b": "Oxygen",
+    "answer_c": "Nitrogen",
+    "correct_answer": "Carbon Dioxide"
+  },
+  {
+    "question_no": 21,
+    "question_text": "In which country is the Great Barrier Reef located?",
+    "answer_a": "Australia",
+    "answer_b": "Brazil",
+    "answer_c": "Canada",
+    "correct_answer": "Australia"
+  },
+  {
+    "question_no": 22,
+    "question_text": "Who is known as the 'Queen of Pop'?",
+    "answer_a": "Madonna",
+    "answer_b": "Beyoncé",
+    "answer_c": "Lady Gaga",
+    "correct_answer": "Madonna"
+  },
+  {
+    "question_no": 23,
+    "question_text": "What is the largest desert in the world?",
+    "answer_a": "Antarctica",
+    "answer_b": "Sahara",
+    "answer_c": "Gobi",
+    "correct_answer": "Antarctica"
+  },
+  {
+    "question_no": 24,
+    "question_text": "Who painted 'The Starry Night'?",
+    "answer_a": "Vincent van Gogh",
+    "answer_b": "Pablo Picasso",
+    "answer_c": "Claude Monet",
+    "correct_answer": "Vincent van Gogh"
+  },
+  {
+    "question_no": 25,
+    "question_text": "Which planet is known as the 'Blue Planet'?",
+    "answer_a": "Earth",
+    "answer_b": "Neptune",
+    "answer_c": "Uranus",
+    "correct_answer": "Earth"
+  }
+]

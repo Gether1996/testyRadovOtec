@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  testysbsweb:
+    image: morfo/testysbsweb:latest
+    environment:
+      - TZ=Europe/Bratislava
+    ports:
+      - 127.0.0.1:23476:8000
+    # volumes:
+    #   - ./dockerdata/Data:/app/Data
+    restart: always
+
