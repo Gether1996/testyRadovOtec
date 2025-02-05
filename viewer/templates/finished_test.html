@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 
 {% block extra_head %}
-    <title>Chyba</title>
+    <title>Dokončený test</title>
 {% endblock %}
 
 {% block content %}
 
 <div style="margin-top: 50px; text-align: center;">
-    <h1>{{ error }}</h1>
+    <h1>{{ message }}</h1>
+    <br>
+    <h2>Počet nesprávnych odpovedí: {{ wrong_answers }}</h2>
     <br>
     <a class="test-select-button" href="{% url 'homepage' %}">Späť na úvodnú stránku</a>
 </div>

@@ -5,6 +5,33 @@ from viewer.models import Test, Question
 import random
 import os
 
+def check_answer(request):
+    if request.method == 'POST':
+        json_data = json.loads(request.body.decode('utf-8'))
+        try:
+            test_obj = Test.objects.first()
+            try:
+                question = Question.objects.get(id=json_data['question_id'])
+                if str(getattr(question, str(json_data.get('picked_answer')))) == question.correct_answer:
+                    question.delete()
+                    return JsonResponse({'status': 'success'})
+
+                else:
+                    correct_field = next(
+                        (field for field in ['answer_a', 'answer_b', 'answer_c']
+                         if getattr(question, field, None) == question.correct_answer),
+                        None
+                    )
+                    test_obj.wrong_answers += 1
+                    test_obj.save()
+                    return JsonResponse({'status': 'success', 'correct_answer': correct_field})
+
+            except Question.DoesNotExist:
+                return JsonResponse({'status': 'error', 'message': 'Otázka sa nenašla'})
+        except Test.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Test sa nenašiel'})
+    return JsonResponse({'status': 'error'})
+
 def create_test(request):
     if request.method == 'POST':
         already_made_test = Test.objects.first()

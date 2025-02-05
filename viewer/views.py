@@ -2,8 +2,10 @@ from django.shortcuts import render
 from viewer.models import Test, Question
 import random
 
+
 def homepage(request):
     return render(request, 'homepage.html')
+
 
 def test(request):
     test_obj = Test.objects.first()
@@ -13,6 +15,10 @@ def test(request):
 
     remaining_questions = list(Question.objects.filter(test=test_obj))
     current_question = random.choice(remaining_questions) if remaining_questions else None
+
+    if not current_question:
+        return render(request, 'finished_test.html', {'message': 'Test bol dokončený.',
+                                                      'wrong_answers': test_obj.wrong_answers})
 
     all_questions = test_obj.num_of_questions_max
     filled_questions = all_questions - len(remaining_questions)

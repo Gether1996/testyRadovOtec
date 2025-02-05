@@ -4,8 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.static import serve
 from viewer.views import homepage, test
-from testysbsdjango.backend.check_answer import check_correct
-from testysbsdjango.backend.CRUD import create_test, continue_test
+from testysbsdjango.backend_funcs import create_test, continue_test, check_answer
 
 urlpatterns = [
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
@@ -14,10 +13,10 @@ urlpatterns = [
     path('', homepage, name='homepage'),
     path('test/', test, name='test'),
 
-    path('check_correct/', check_correct, name='check_correct'),
+    path('check_answer/', check_answer, name='check_answer'),
     path('admin/', admin.site.urls),
 
-    ########## CRUD
+    ########## API
 
     path('create_test/', create_test, name='create_test'),
     path('continue_test/', continue_test, name='continue_test'),

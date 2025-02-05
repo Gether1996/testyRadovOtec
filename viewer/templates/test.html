@@ -23,9 +23,9 @@
       </div>
         <h4 class="test-question-header">{{ current_question.question_no}}. {{ current_question.question_text }}</h4>
         <div class="column-container-test">
-            <button id="question-a" class="question-select-button" onclick="checkCorrect('{{ current_question.id }}', 'answer_a')">a) {{ current_question.answer_a }}</button>
-            <button id="question-b" class="question-select-button" onclick="checkCorrect('{{ current_question.id }}', 'answer_b')">b) {{ current_question.answer_b }}</button>
-            <button id="question-c" class="question-select-button" onclick="checkCorrect('{{ current_question.id }}', 'answer_c')">c) {{ current_question.answer_c }}</button>
+            <button id="question-a" class="question-select-button" onclick="checkAnswer('{{ current_question.id }}', 'answer_a')">a) {{ current_question.answer_a }}</button>
+            <button id="question-b" class="question-select-button" onclick="checkAnswer('{{ current_question.id }}', 'answer_b')">b) {{ current_question.answer_b }}</button>
+            <button id="question-c" class="question-select-button" onclick="checkAnswer('{{ current_question.id }}', 'answer_c')">c) {{ current_question.answer_c }}</button>
         </div>
         <div class="previous-next-buttons">
             <button class="next-question-button btn btn-outline-primary initially-hidden" id="nextButton" onclick="nextQuestion()">Ďalšia otázka</button>
