@@ -5,9 +5,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-isg%)h_)j)%f7a0-w%pvq+$*#8_zhkix+tkn)7)fi#4t49x*o%'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'localhost']
+
+DOMAINS = ['10.16.50.22', '*', 'localhost']
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost',
+    'http://10.16.50.22',
+]
 
 # Application definition
 
