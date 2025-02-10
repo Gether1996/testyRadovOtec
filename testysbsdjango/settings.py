@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-isg%)h_)j)%f7a0-w%pvq+$*#8_zhkix+tkn)7)fi#4t49x*o%'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*', 'localhost']
 
@@ -54,6 +54,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'testysbsdjango.context_processors.get_font_size',
+                'testysbsdjango.context_processors.get_test_with_progress',
             ],
         },
     },

@@ -16,7 +16,13 @@
             </div>
             <br>
             <div class="input-login-container">
-                <button class="test-select-button" onclick="continueInTest()">Pokračovať v teste</button>
+                <button class="test-select-button" onclick="continueInTest()">
+                    Pokračovať v teste
+                    {% if progress_text %}
+                        <br>
+                        <span style="font-size: 14px;">{{ progress_text }}</span>
+                    {% endif %}
+                </button>
             </div>
         </div>
     </div>

@@ -135,7 +135,7 @@ body {
 .question-select-button {
   background-color: white;
   text-align: left;
-  margin-bottom: 11px;
+  margin-bottom: 2px;
   border: 1px solid grey;
   border-radius: 8px;
   transition: 0.2s;
@@ -563,7 +563,7 @@ body {
     .pin-input,
     .log-in-button,
     .test-select-button {
-        height: 60px;
+        height: 70px;
         font-size: 15px;
     }
 

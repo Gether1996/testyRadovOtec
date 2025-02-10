@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let chosenSize = this.dataset.size;
 
             // Apply font size to buttons
-            document.querySelectorAll(".question-select-button").forEach(button => {
+            document.querySelectorAll(".question-select-button, .test-question-header").forEach(button => {
                 button.style.fontSize = chosenSize + "px";
             });
 

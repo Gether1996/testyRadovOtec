@@ -77,7 +77,7 @@
 function createTest() {
   Swal.fire({
     icon: 'question',
-    title: 'Ak máte rozpracovaný test, vymaže sa, pokračovať?',
+    title: 'Rozpracovaný test sa vymaže, pokračovať?',
     showCancelButton: true,
     confirmButtonText: 'Pokračovať',
     cancelButtonText: 'Zrušiť',
@@ -146,18 +146,9 @@ function continueInTest() {
       })
         .then(response => response.json())
         .then(data => {
+          Swal.close();
           if (data.status === 'success') {
-            Swal.fire({
-                icon: 'question',
-                title: `Zodpovedaných ${data.progress} z celkových ${data.max} otázok, pokračovať?`,
-                showCancelButton: true,
-                confirmButtonText: 'Pokračovať',
-                cancelButtonText: 'Zrušiť',
-              }).then((result) => {
-                  if (result.isConfirmed) {
-                    window.location.href = `/test/`;
-                  }
-              });
+                window.location.href = `/test/`;
           } else {
             Swal.fire({
               icon: 'error',
