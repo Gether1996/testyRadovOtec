@@ -32,27 +32,25 @@
 
         <div style="margin-top: 25px; margin-bottom: 50px;" class="d-flex gap-1 justify-content-center w-100">
             <button style="font-size: {{ current_font_size }}px;" class="cancel-test-button btn btn-outline-danger flex-grow-1" onclick="cancelTestConfirmation()">Zrušiť test</button>
+            <button style="font-size: {{ current_font_size }}px;" class="next-question-button btn btn-outline-primary initially-hidden flex-grow-1" id="nextButton" onclick="nextQuestion()">Ďalšia otázka</button>
+        </div>
 
-            <!-- Bootstrap Button Dropdown -->
-            <button style="font-size: {{ current_font_size }}px;" type="button" id="changeFontSizeButton" class="btn btn-primary dropdown-toggle flex-grow-2 d-md-inline-block d-none btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
-                Velkosť textu ({{ current_font_size }}px)
-            </button>
-
-            <button style="font-size: {{ current_font_size }}px;" type="button" id="changeFontSizeButtonMobile" class="btn btn-primary dropdown-toggle flex-grow-2 d-md-none btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ current_font_size }}px
-            </button>
-
-            <button style="font-size: {{ current_font_size }}px;" class="btn btn-outline-primary initially-hidden flex-grow-1" id="nextButton" onclick="nextQuestion()">Ďalšia otázka</button>
-
-            <ul class="dropdown-menu" id="font-size-menu">
-                <!-- Font size options will be inserted here dynamically -->
-            </ul>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="d-flex align-items-center justify-content-center gap-2">
+            <button id="decreaseFontSize" style="padding: 4px 12px; border-radius: 50%;" class="btn btn-sm btn-secondary">-</button>
+            <span id="fontSizeLabel">Veľkosť textu</span>
+            <button id="increaseFontSize" style="padding: 4px 10px; border-radius: 50%;" class="btn btn-sm btn-secondary">+</button>
         </div>
     </div>
 {% endblock %}
 
 {% block extra_scripts %}
     <script>
+        var currentFontSize = {{ current_font_size }};
         var remaining_questions = '{{ remaining_questions }}';
         var percentage = {{ done_questions_percent }};
         var question_num = {{ current_question.question_no }};

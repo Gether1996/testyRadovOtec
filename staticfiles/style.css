@@ -126,6 +126,7 @@ body {
 .question-select-button {
   background-color: white;
   text-align: left;
+  min-height: 60px;
   margin-bottom: 4px;
   border: 1px solid grey;
   border-radius: 8px;
@@ -625,10 +626,6 @@ body {
 
     .dots-container {
         width: 100%;
-    }
-
-    .question-select-button {
-      font-size: 13px;
     }
 
     #countdown {

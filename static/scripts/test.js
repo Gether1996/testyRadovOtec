@@ -89,38 +89,30 @@ function cancelTestConfirmation() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    let menu = document.getElementById("font-size-menu");
-    let fontSizeButton = document.getElementById('changeFontSizeButton');
-    let fontSizeButtonMobile = document.getElementById('changeFontSizeButtonMobile');
+    let fontSizeLabel = document.getElementById("fontSizeLabel");
+    let decreaseButton = document.getElementById("decreaseFontSize");
+    let increaseButton = document.getElementById("increaseFontSize");
 
-    for (let size = 10; size <= 40; size += 2) {
-        let listItem = document.createElement("li");
-        let link = document.createElement("a");
-        link.className = "dropdown-item";
-        link.href = "#";
-        link.textContent = size + "px";
-        link.dataset.size = size;
-
-        link.addEventListener("click", function (event) {
-            event.preventDefault();
-            let chosenSize = this.dataset.size;
-
-            // Apply font size to buttons
-            document.querySelectorAll(".question-select-button, .test-question-header, .btn").forEach(button => {
-                button.style.fontSize = chosenSize + "px";
-            });
-
-            // Update both buttons with the selected font size
-            fontSizeButton.textContent = `Veľkosť textu (${chosenSize}px)`;
-            fontSizeButtonMobile.textContent = `${chosenSize}px`;
-
-            // Send GET request to save font size
-            fetch(`save_font_size/${chosenSize}/`, { method: "GET" })
-                .then(response => console.log(`Font size ${chosenSize} saved.`))
-                .catch(error => console.error("Error saving font size:", error));
+    function updateFontSize(newSize) {
+        document.querySelectorAll(".question-select-button, .test-question-header, .cancel-test-button, .next-question-button").forEach(el => {
+            el.style.fontSize = newSize + "px";
         });
-
-        listItem.appendChild(link);
-        menu.appendChild(listItem);
+        fetch(`save_font_size/${newSize}/`, { method: "GET" })
+            .then(response => console.log(`Font size ${newSize} saved.`))
+            .catch(error => console.error("Error saving font size:", error));
     }
+
+    decreaseButton.addEventListener("click", function () {
+        if (currentFontSize > 10) {
+            currentFontSize -= 2;
+            updateFontSize(currentFontSize);
+        }
+    });
+
+    increaseButton.addEventListener("click", function () {
+        if (currentFontSize < 40) {
+            currentFontSize += 2;
+            updateFontSize(currentFontSize);
+        }
+    });
 });
