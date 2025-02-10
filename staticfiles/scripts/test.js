@@ -87,3 +87,38 @@ document.addEventListener('keydown', function(event) {
 function cancelTestConfirmation() {
     window.location.href = '/';
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    let menu = document.getElementById("font-size-menu");
+    let fontSizeButton = document.getElementById('changeFontSizeButton');
+
+    for (let size = 10; size <= 40; size += 2) {
+        let listItem = document.createElement("li");
+        let link = document.createElement("a");
+        link.className = "dropdown-item";
+        link.href = "#";
+        link.textContent = size + "px";
+        link.dataset.size = size;
+
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            let chosenSize = this.dataset.size;
+
+            // Apply font size to buttons
+            document.querySelectorAll(".question-select-button").forEach(button => {
+                button.style.fontSize = chosenSize + "px";
+            });
+
+            // Update button text to show selected size
+            fontSizeButton.textContent = `Veľkosť textu (${chosenSize}px)`;
+
+            // Send GET request to save font size
+            fetch(`save_font_size/${chosenSize}/`, { method: "GET" })
+                .then(response => console.log(`Font size ${chosenSize} saved.`))
+                .catch(error => console.error("Error saving font size:", error));
+        });
+
+        listItem.appendChild(link);
+        menu.appendChild(listItem);
+    }
+});

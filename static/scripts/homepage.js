@@ -146,7 +146,17 @@ function continueInTest() {
         .then(response => response.json())
         .then(data => {
           if (data.status === 'success') {
-            window.location.href = `/test/`;
+            Swal.fire({
+                icon: 'question',
+                title: `Zodpovedaných ${data.progress} z celkových ${data.max} otázok, pokračovať?`,
+                showCancelButton: true,
+                confirmButtonText: 'Pokračovať',
+                cancelButtonText: 'Zrušiť',
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                    window.location.href = `/test/`;
+                  }
+              });
           } else {
             Swal.fire({
               icon: 'error',

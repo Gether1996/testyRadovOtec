@@ -1,7 +1,7 @@
 import json
 from django.conf import settings
 from django.http import JsonResponse
-from viewer.models import Test, Question
+from viewer.models import Test, Question, FontSize
 import random
 import os
 
@@ -14,8 +14,9 @@ def check_answer(request):
                 question = Question.objects.get(id=json_data['question_id'])
                 if str(getattr(question, str(json_data.get('picked_answer')))) == question.correct_answer:
                     question.delete()
+                    test_obj.correct_answers += 1
+                    test_obj.save()
                     return JsonResponse({'status': 'success'})
-
                 else:
                     correct_field = next(
                         (field for field in ['answer_a', 'answer_b', 'answer_c']
@@ -73,7 +74,15 @@ def continue_test(request):
     if request.method == 'POST':
         existing_test = Test.objects.first()
         if existing_test:
-            return JsonResponse({'status': 'success'})
+            return JsonResponse({'status': 'success', 'max': existing_test.num_of_questions_max, 'progress': existing_test.correct_answers})
         else:
             return JsonResponse({'status': 'error', 'message': 'Test sa nenašiel, prosím vytvorte nový.'})
+    return JsonResponse({'status': 'error'})
+
+def save_font_size(request, chosen_size):
+    if request.method == 'GET':
+        current_size = FontSize.objects.first()
+        current_size.size = int(chosen_size)
+        current_size.save()
+        return JsonResponse({'status': 'success'})
     return JsonResponse({'status': 'error'})

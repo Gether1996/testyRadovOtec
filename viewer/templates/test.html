@@ -7,7 +7,23 @@
 
 {% block content %}
     <br>
-    <h2 class="test-number-header text-centered">{{ test_name }}</h2>
+    <div class="d-flex gap-2 justify-content-center align-items-center flex-wrap">
+        <h2 class="test-number-header text-center">{{ test_name }}</h2>
+
+        <!-- Bootstrap Button Dropdown -->
+        <div class="btn-group">
+            <button type="button" id="changeFontSizeButton" class="btn btn-primary dropdown-toggle d-md-inline-block d-none btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
+                Velkosť textu ({{ current_font_size }}px)
+            </button>
+            <button type="button" id="changeFontSizeButtonMobile" class="btn btn-primary dropdown-toggle d-md-none btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ current_font_size }}px
+            </button>
+            <ul class="dropdown-menu" id="font-size-menu">
+                <!-- Font size options will be inserted here dynamically -->
+            </ul>
+        </div>
+    </div>
+
     <div class="text-centered ">
       <div class="progress-wrapper">
           <div class="numbers-container">
@@ -23,9 +39,9 @@
       </div>
         <h4 class="test-question-header">{{ current_question.question_no}}. {{ current_question.question_text }}</h4>
         <div class="column-container-test">
-            <button id="question-a" class="question-select-button" onclick="checkAnswer('{{ current_question.id }}', 'answer_a')">a) {{ current_question.answer_a }}</button>
-            <button id="question-b" class="question-select-button" onclick="checkAnswer('{{ current_question.id }}', 'answer_b')">b) {{ current_question.answer_b }}</button>
-            <button id="question-c" class="question-select-button" onclick="checkAnswer('{{ current_question.id }}', 'answer_c')">c) {{ current_question.answer_c }}</button>
+            <button id="question-a" style="font-size: {{ current_font_size }}px;" class="question-select-button" onclick="checkAnswer('{{ current_question.id }}', 'answer_a')">a) {{ current_question.answer_a }}</button>
+            <button id="question-b" style="font-size: {{ current_font_size }}px;" class="question-select-button" onclick="checkAnswer('{{ current_question.id }}', 'answer_b')">b) {{ current_question.answer_b }}</button>
+            <button id="question-c" style="font-size: {{ current_font_size }}px;" class="question-select-button" onclick="checkAnswer('{{ current_question.id }}', 'answer_c')">c) {{ current_question.answer_c }}</button>
         </div>
         <div class="previous-next-buttons">
             <button class="next-question-button btn btn-outline-primary initially-hidden" id="nextButton" onclick="nextQuestion()">Ďalšia otázka</button>

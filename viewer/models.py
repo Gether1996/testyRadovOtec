@@ -4,6 +4,7 @@ class Test(Model):
     num_of_questions_max = IntegerField(default=None)
     done = BooleanField(default=False)
     wrong_answers = IntegerField(default=0)
+    correct_answers = IntegerField(default=0)
 
 
 class Question(Model):
@@ -18,3 +19,7 @@ class Question(Model):
 
     def __str__(self):
         return f"{self.question_no})"
+
+
+class FontSize(Model):
+    size = IntegerField(default=10)
