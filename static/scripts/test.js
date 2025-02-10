@@ -100,7 +100,10 @@ document.addEventListener("DOMContentLoaded", function () {
         link.textContent = size + "px";
         link.dataset.size = size;
 
-        link.addEventListener("click", function (event) {
+        link.addEventListener("click", handleFontSizeChange);
+        link.addEventListener("touchend", handleFontSizeChange);
+
+        function handleFontSizeChange(event) {
             event.preventDefault();
             let chosenSize = this.dataset.size;
 
@@ -116,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
             fetch(`save_font_size/${chosenSize}/`, { method: "GET" })
                 .then(response => console.log(`Font size ${chosenSize} saved.`))
                 .catch(error => console.error("Error saving font size:", error));
-        });
+        }
 
         listItem.appendChild(link);
         menu.appendChild(listItem);
