@@ -89,6 +89,7 @@ function cancelTestConfirmation() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    window.scrollTo(0, 0);
     let fontSizeLabel = document.getElementById("fontSizeLabel");
     let decreaseButton = document.getElementById("decreaseFontSize");
     let increaseButton = document.getElementById("increaseFontSize");
