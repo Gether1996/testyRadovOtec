@@ -91,6 +91,7 @@ function cancelTestConfirmation() {
 document.addEventListener("DOMContentLoaded", function () {
     let menu = document.getElementById("font-size-menu");
     let fontSizeButton = document.getElementById('changeFontSizeButton');
+    let fontSizeButtonMobile = document.getElementById('changeFontSizeButtonMobile');
 
     for (let size = 10; size <= 40; size += 2) {
         let listItem = document.createElement("li");
@@ -100,10 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
         link.textContent = size + "px";
         link.dataset.size = size;
 
-        link.addEventListener("click", handleFontSizeChange);
-        link.addEventListener("touchend", handleFontSizeChange);
-
-        function handleFontSizeChange(event) {
+        link.addEventListener("click", function (event) {
             event.preventDefault();
             let chosenSize = this.dataset.size;
 
@@ -112,14 +110,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 button.style.fontSize = chosenSize + "px";
             });
 
-            // Update button text to show selected size
+            // Update both buttons with the selected font size
             fontSizeButton.textContent = `Veľkosť textu (${chosenSize}px)`;
+            fontSizeButtonMobile.textContent = `${chosenSize}px`;
 
             // Send GET request to save font size
             fetch(`save_font_size/${chosenSize}/`, { method: "GET" })
                 .then(response => console.log(`Font size ${chosenSize} saved.`))
                 .catch(error => console.error("Error saving font size:", error));
-        }
+        });
 
         listItem.appendChild(link);
         menu.appendChild(listItem);
