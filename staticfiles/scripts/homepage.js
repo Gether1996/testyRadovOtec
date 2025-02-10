@@ -102,6 +102,7 @@ function createTest() {
           })
             .then(response => response.json())
             .then(data => {
+              Swal.close();
               if (data.status === 'success') {
                 window.location.href = `/test/`;
               } else {
