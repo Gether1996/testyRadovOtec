@@ -9,11 +9,13 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*', 'localhost']
 
-DOMAINS = ['10.16.50.22', '*', 'localhost']
+DOMAINS = ['10.16.50.22', '*', 'localhost', 'sbstest.ccsipro.sk']
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost',
     'http://10.16.50.22',
+    'https://sbstest.ccsipro.sk/',
+    'https://sbstest.ccsipro.sk',
 ]
 
 # Application definition
@@ -57,10 +59,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'testysbsdjango.wsgi.application'
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://skuskysbs.ccsipro.sk',
-]
 
 
 # Database
