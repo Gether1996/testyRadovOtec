@@ -25,9 +25,9 @@
       </div>
         <h4 style="font-size: {{ current_font_size }}px; text-align: left;" class="test-question-header">{{ current_question.question_no}}. {{ current_question.question_text }}</h4>
         <div class="column-container-test">
-            <button id="question-a" style="font-size: {{ current_font_size }}px;" class="question-select-button" onclick="checkAnswer('{{ current_question.id }}', 'answer_a')">a) {{ current_question.answer_a }}</button>
-            <button id="question-b" style="font-size: {{ current_font_size }}px;" class="question-select-button" onclick="checkAnswer('{{ current_question.id }}', 'answer_b')">b) {{ current_question.answer_b }}</button>
-            <button id="question-c" style="font-size: {{ current_font_size }}px;" class="question-select-button" onclick="checkAnswer('{{ current_question.id }}', 'answer_c')">c) {{ current_question.answer_c }}</button>
+            <button id="question-a" style="font-size: {{ current_font_size }}px;" lang="sk" class="question-select-button" onclick="checkAnswer('{{ current_question.id }}', 'answer_a')">a) {{ current_question.answer_a }}</button>
+            <button id="question-b" style="font-size: {{ current_font_size }}px;" lang="sk" class="question-select-button" onclick="checkAnswer('{{ current_question.id }}', 'answer_b')">b) {{ current_question.answer_b }}</button>
+            <button id="question-c" style="font-size: {{ current_font_size }}px;" lang="sk" class="question-select-button" onclick="checkAnswer('{{ current_question.id }}', 'answer_c')">c) {{ current_question.answer_c }}</button>
         </div>
 
         <div style="margin-top: 25px; margin-bottom: 50px;" class="d-flex gap-1 justify-content-center w-100">
