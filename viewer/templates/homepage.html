@@ -14,6 +14,7 @@
             <div class="input-login-container">
                 <button class="test-select-button" onclick="createTest()">Nový test</button>
             </div>
+            {% if progress_text %}
             <br>
             <div class="input-login-container">
                 <button class="test-select-button" onclick="continueInTest()">
@@ -24,11 +25,15 @@
                     {% endif %}
                 </button>
             </div>
+            {% endif %}
         </div>
     </div>
 
 {% endblock %}
 
 {% block extra_scripts %}
+    <script>
+        const testExists = {% if progress_text %}true{% else %}null{% endif %};
+    </script>
     <script src="{% static 'scripts/homepage.js' %}"></script>
 {% endblock %}

@@ -75,56 +75,62 @@
 //});
 
 function createTest() {
+  if (testExists !== null) {
+    Swal.fire({
+      icon: 'question',
+      title: 'Rozpracovaný test sa vymaže, pokračovať?',
+      showCancelButton: true,
+      confirmButtonText: 'Pokračovať',
+      cancelButtonText: 'Zrušiť',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        startTestCreation();
+      }
+    });
+  } else {
+    startTestCreation();
+  }
+}
+
+function startTestCreation() {
   Swal.fire({
-    icon: 'question',
-    title: 'Rozpracovaný test sa vymaže, pokračovať?',
-    showCancelButton: true,
-    confirmButtonText: 'Pokračovať',
-    cancelButtonText: 'Zrušiť',
-  }).then((result) => {
-    if (result.isConfirmed) {
+    icon: 'info',
+    allowOutsideClick: false,
+    showCancelButton: false,
+    showConfirmButton: false,
+    didOpen: () => {
+      Swal.showLoading();
 
-      Swal.fire({
-        title: 'Vytváram test...',
-        icon: 'info',
-        allowOutsideClick: false,
-        showCancelButton: false,
-        showConfirmButton: false,
-        didOpen: () => {
-          Swal.showLoading();
-
-          fetch("/create_test/", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              'X-CSRFToken': csrfToken
-            }
-          })
-            .then(response => response.json())
-            .then(data => {
-              Swal.close();
-              if (data.status === 'success') {
-                window.location.href = `/test/`;
-              } else {
-                Swal.fire({
-                  icon: 'error',
-                  title: data.message,
-                  showCancelButton: false,
-                  showConfirmButton: true,
-                });
-              }
-            })
-            .catch(error => {
-              Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Something went wrong while creating the tests.',
-                showCancelButton: false,
-                showConfirmButton: true,
-              });
-            });
+      fetch("/create_test/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          'X-CSRFToken': csrfToken
         }
-      });
+      })
+        .then(response => response.json())
+        .then(data => {
+          Swal.close();
+          if (data.status === 'success') {
+            window.location.href = `/test/`;
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: data.message,
+              showCancelButton: false,
+              showConfirmButton: true,
+            });
+          }
+        })
+        .catch(error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Something went wrong while creating the test.',
+            showCancelButton: false,
+            showConfirmButton: true,
+          });
+        });
     }
   });
 }
