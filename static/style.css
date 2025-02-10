@@ -1,5 +1,5 @@
 body {
-  margin: 0 10%;
+  margin: 0 3%;
   padding: 0px;
 }
 
@@ -55,7 +55,7 @@ body {
 .test-select-button {
   text-decoration: none;
   width: 400px;
-  padding: 15px 50px;
+  padding: 5px;
   border: 2px solid black;
   border-radius: 5px;
   background-color: white;
@@ -115,17 +115,8 @@ body {
   margin-top: 10px;
 }
 
-.cancel-test-button-container{
-    margin-top: 50px;
-    margin-bottom: 30px;
-}
-
 .initially-hidden {
-    display: none;
-}
-
-.cancel-test-button:hover {
-  background-color: red;
+    visibility: hidden;
 }
 
 .next-question-button {
@@ -135,7 +126,7 @@ body {
 .question-select-button {
   background-color: white;
   text-align: left;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
   border: 1px solid grey;
   border-radius: 8px;
   transition: 0.2s;
@@ -563,6 +554,7 @@ body {
     .pin-input,
     .log-in-button,
     .test-select-button {
+        width: 80%;
         height: 70px;
         font-size: 15px;
     }
@@ -629,11 +621,6 @@ body {
 
     .history-question-li {
         font-size: 12px;
-    }
-
-    .cancel-test-button-container{
-        margin-top: 50px;
-        margin-bottom: 30px;
     }
 
     .dots-container {
